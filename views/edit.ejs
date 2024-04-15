@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= song ? 'Editar Canción' : 'Agregar Canción' %></title>
+  <style>
+    body, h1, form, label, input, button {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+h1 {
+  font-size: 36px;
+  color: #333;
+  margin-top: 40px;
+}
+
+form {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  width: 300px;
+  margin: 20px auto;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  background-color: #0074d9;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+  </style>
+</head>
+<body>
+  <h1><%= song ? 'Editar Canción' : 'Agregar Canción' %></h1>
+  <form method="post" action="<%= song ? '/edit/' + song.id : '/add' %>" onsubmit="return validarFecha()">
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" value="<%= song ? song.nombre : '' %>" maxlength="100" required>
+
+    <label for="autor">Autor:</label>
+    <input type="text" name="autor" value="<%= song ? song.autor : '' %>" maxlength="100" required>
+
+    <label for="genero">Género:</label>
+    <select name="genero">
+      <option value="rock" <%= song && song.genero === 'rock' ? 'selected' : '' %>>Rock</option>
+      <option value="rock-español" <%= song && song.genero === 'rock-español' ? 'selected' : '' %>>Rock en Español</option>
+      <option value="pop" <%= song && song.genero === 'pop' ? 'selected' : '' %>>Pop</option>
+      <option value="hip-hop" <%= song && song.genero === 'hip-hop' ? 'selected' : '' %>>Hip-Hop</option>
+      <option value="electrónica" <%= song && song.genero === 'electrónica' ? 'selected' : '' %>>Electrónica</option>
+      <option value="jazz" <%= song && song.genero === 'jazz' ? 'selected' : '' %>>Jazz</option>
+      <option value="clásica" <%= song && song.genero === 'clásica' ? 'selected' : '' %>>Música Clásica</option>
+      <option value="reggae" <%= song && song.genero === 'reggae' ? 'selected' : '' %>>Reggae</option>
+      <option value="blues" <%= song && song.genero === 'blues' ? 'selected' : '' %>>Blues</option>
+      <option value="country" <%= song && song.genero === 'country' ? 'selected' : '' %>>Country</option>
+      <option value="folk" <%= song && song.genero === 'folk' ? 'selected' : '' %>>Folk</option>
+      <option value="indie" <%= song && song.genero === 'indie' ? 'selected' : '' %>>Indie</option>
+      <option value="música-experimental" <%= song && song.genero === 'música-experimental' ? 'selected' : '' %>>Música Experimental</option>
+      <option value="r&b" <%= song && song.genero === 'r&b' ? 'selected' : '' %>>R&B</option>
+      <option value="world" <%= song && song.genero === 'world' ? 'selected' : '' %>>World</option>
+      <option value="infantil" <%= song && song.genero === 'infantil' ? 'selected' : '' %>>Música Infantil</option>
+      <option value="religiosa" <%= song && song.genero === 'religiosa' ? 'selected' : '' %>>Música Religiosa</option>
+      <option value="clásica-india" <%= song && song.genero === 'clásica-india' ? 'selected' : '' %>>Música Clásica India</option>
+      <option value="videojuegos" <%= song && song.genero === 'videojuegos' ? 'selected' : '' %>>Música de Videojuegos</option>
+    </select>
+
+    <label for="fecha">Fecha de Lanzamiento:</label>
+    <input type="text" name="fecha" 
+    value="<%= song ? song.fecha.getFullYear() + '-' + String(song.fecha.getMonth() + 1).padStart(2, '0') + '-' + String(song.fecha.getDate()).padStart(2, '0') : '' %>"
+    required maxlength="10">
+    <button type="submit"><%= song ? 'Editar' : 'Agregar' %></button>
+  </form>
+  <script>
+    function validarFecha() {
+      var fechaInput = document.querySelector('input[name="fecha"]').value;
+      
+      var regex = /^\d{4}-\d{2}-\d{2}$/;
+      
+      if (!regex.test(fechaInput)) {
+        alert("El formato de fecha debe ser AAAA-MM-DD");
+        return false;
+      }
+      
+      return true;
+    }
+  </script>
+</body>
+</html>

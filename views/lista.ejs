@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Canciones</title>
+  <style>
+    body, h1, a, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+h1 {
+  font-size: 36px;
+  color: #333;
+  margin-top: 40px;
+}
+
+a {
+  text-decoration: none;
+  color: #0074d9;
+  display: block;
+  margin-top: 10px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style-type: none;
+  margin: 20px;
+  padding: 0;
+}
+
+li {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+li strong {
+  font-weight: bold;
+}
+  </style>
+</head>
+<body>
+  <h1>Lista de Canciones</h1>
+  <a href="/add">Agregar Canción</a>
+  <ul>
+    <% songs.forEach(function(song) { %>
+      <li>
+        <strong>Nombre:</strong> <%= song.nombre %><br>
+        <strong>Autor:</strong> <%= song.autor %><br>
+        <strong>Género:</strong> <%= song.genero %><br>
+        <strong>Fecha de Lanzamiento:</strong> <%= song.fecha.getFullYear() + '-' + String(song.fecha.getMonth() + 1).padStart(2, '0') + '-' + String(song.fecha.getDate()).padStart(2, '0') %><br>
+        <a href="/edit/<%= song.id %>">Editar</a>
+        <a href="/delete/<%= song.id %>">Eliminar</a>
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar Canción</title>
+  <style>
+    body, h1, form, label, input, button, a, select {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #333;
+      margin-top: 40px;
+    }
+
+    form {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+      width: 300px;
+      margin: 20px auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      background-color: #0074d9;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 3px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    a {
+      text-decoration: none;
+      color: #0074d9;
+      display: block;
+      margin-top: 10px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Agregar Canción</h1>
+  <form method="post" action="/add" onsubmit="return validarFecha()">
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" required maxlength="100">
+
+    <label for="autor">Autor:</label>
+    <input type="text" name="autor" required maxlength="100">
+
+    <label for="genero">Género:</label>
+    <select name="genero" required>
+      <option value="rock">Rock</option>
+      <option value="rock-español">Rock en Español</option>
+      <option value="pop">Pop</option>
+      <option value="hip-hop">Hip-Hop</option>
+      <option value="electrónica">Electrónica</option>
+      <option value="jazz">Jazz</option>
+      <option value="clásica">Música Clásica</option>
+      <option value="reggae">Reggae</option>
+      <option value="blues">Blues</option>
+      <option value="country">Country</option>
+      <option value="folk">Folk</option>
+      <option value="indie">Indie</option>
+      <option value="música-experimental">Música Experimental</option>
+      <option value="r&b">R&B</option>
+      <option value="world">World</option>
+      <option value="infantil">Música Infantil</option>
+      <option value="religiosa">Música Religiosa</option>
+      <option value="clásica-india">Música Clásica India</option>
+      <option value="videojuegos">Música de Videojuegos</option>
+    </select>
+
+    <label for="fecha">Fecha de Lanzamiento:</label>
+    <input type="text" name="fecha" required>
+    
+    <button type="submit">Agregar</button>
+  </form>
+  <script>
+    function validarFecha() {
+      var fechaInput = document.querySelector('input[name="fecha"]').value;
+      
+      var regex = /^\d{4}-\d{2}-\d{2}$/;
+      
+      if (!regex.test(fechaInput)) {
+        alert("El formato de fecha debe ser AAAA-MM-DD");
+        return false;
+      }
+      
+      return true;
+    }
+  </script>
+  <a href="/">Volver a la lista de reproducción</a>
+</body>
+</html>
