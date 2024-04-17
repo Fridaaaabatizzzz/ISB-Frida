@@ -17,13 +17,14 @@ MYSQL_USER= "root"
 MYSQL_PASSWORD= "rzrWFmayPiTPybVPKnJqZGJTmAmBFRNc"
 MYSQL_DATABASE= "railway"
 
- const connection = mysql.createConnection({
-   host: "roundhouse.proxy.rlwy.net" || "localhost",
-   port: "28787" ||"3306",
-   user: "root" || 'root',
-   password: "rzrWFmayPiTPybVPKnJqZGJTmAmBFRNc" || 'n0m3l0',
-   database: "railway" || 'playlist_db',
- });
+const connection = mysql.createConnection({
+  host: process.env.MYSQL_HOST || "localhost",
+  port: process.env.MYSQL_PORT || "3306",
+  user: process.env.MYSQL_USER || 'root',
+  password: process.env.MYSQL_PASSWORD || 'n0m3l0',
+  database: process.env.MYSQL_DATABASE || 'playlist_db',
+});
+
 
 
 app.use(express.urlencoded({ extended: true }));
