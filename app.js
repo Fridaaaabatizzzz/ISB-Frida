@@ -3,13 +3,28 @@ const app = express();
 const port = 3000;
 const mysql = require('mysql2');
 
-const connection = mysql.createConnection({
-  host: process.env.MYSQL_HOST,
-  port: process.env.MYSQL_PORT,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE,
-});
+// const connection = mysql.createConnection({
+//   host: process.env.MYSQL_HOST,
+//   port: process.env.MYSQL_PORT,
+//   user: process.env.MYSQL_USER,
+//   password: process.env.MYSQL_PASSWORD,
+//   database: process.env.MYSQL_DATABASE,
+// });
+
+MYSQL_HOST=  "roundhouse.proxy.rlwy.net"
+MYSQL_PORT= "28787"
+MYSQL_USER= "root"
+MYSQL_PASSWORD= "rzrWFmayPiTPybVPKnJqZGJTmAmBFRNc"
+MYSQL_DATABASE= "railway"
+
+ const connection = mysql.createConnection({
+   host: "roundhouse.proxy.rlwy.net" || "localhost",
+   port: "28787" ||"3306",
+   user: "root" || 'root',
+   password: "rzrWFmayPiTPybVPKnJqZGJTmAmBFRNc" || 'n0m3l0',
+   database: "railway" || 'playlist_db',
+ });
+
 
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
