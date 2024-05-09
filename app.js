@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const { Client } = require("pg");
+const path = require("path");
 
 MYSQL_HOST = "ep-long-cherry-a4kv9ehp-pooler.us-east-1.aws.neon.tech";
 MYSQL_PORT = "5432";
@@ -28,7 +29,10 @@ connection.connect((err) => {
 });
 
 app.use(express.urlencoded({ extended: true }));
+
 app.set("view engine", "ejs");
+
+app.set("views", path.join(__dirname, "views"));
 
 // Rutas
 app.get("/", (req, res) => {
